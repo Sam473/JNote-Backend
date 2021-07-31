@@ -7,7 +7,7 @@ public class NoteTest {
     Note testNote;
 
     @BeforeAll
-    public void makeNote(){
+    private static void makeNote(){
         //TODO: Build this properly for the testing
 //        testNote = new Note.NoteBuilder()
 //                .withTitle("")
