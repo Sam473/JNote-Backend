@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import java.util.Set;
 
-@RestController("/api/v1/note")
+@RestController
+@RequestMapping("/api/v1/note")
 public class MainController {
 
     @NonNull
