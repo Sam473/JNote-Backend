@@ -1,9 +1,7 @@
-package com.thing.JNoteBackend.Model;
+package com.thing.JNoteBackend.model;
 
-import com.thing.JNoteBackend.Model.Interfaces.INote;
-import com.thing.JNoteBackend.Model.Interfaces.INoteBuilder;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.thing.JNoteBackend.model.interfaces.INote;
+import com.thing.JNoteBackend.model.interfaces.INoteBuilder;
 
 import java.time.LocalDateTime;
 
@@ -21,51 +19,34 @@ public class Note implements INote {
         this.dateLastModified = builder.dateLastModified;
     }
 
-    @Override
-    public JSONObject getDetails() {
-        //TODO: Sort this shit
-        JSONObject postDetails = new JSONObject();
-        try {
-            postDetails.put("title", title);
-            postDetails.put("body", body);
-            postDetails.put("cdate", dateCreated);
-            postDetails.put("mdate", dateLastModified);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-        return postDetails;
-    }
-
     public static class NoteBuilder implements INoteBuilder {
         private String title;
         private String body;
         private LocalDateTime dateCreated;
         private LocalDateTime dateLastModified;
 
-        public NoteBuilder() {
-
-        }
-
         @Override
-        public void withBody(String body) {
+        public NoteBuilder withBody(String body) {
             this.body = body;
+            return this;
         }
 
         @Override
-        public void withDateCreated(LocalDateTime created) {
+        public NoteBuilder withDateCreated(LocalDateTime created) {
             this.dateCreated = created;
+            return this;
         }
 
         @Override
-        public void withDateLastModified(LocalDateTime modified) {
+        public NoteBuilder withDateLastModified(LocalDateTime modified) {
             this.dateLastModified=modified;
+            return this;
         }
 
         @Override
-        public void withTitle(String title) {
+        public NoteBuilder withTitle(String title) {
             this.title = title;
+            return this;
         }
 
         @Override
