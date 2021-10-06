@@ -11,12 +11,18 @@ public class Note implements INote {
     private final LocalDateTime dateCreated;
     private final LocalDateTime dateLastModified;
 
-
     private Note(NoteBuilder builder) {
         this.title = builder.title;
         this.body = builder.body;
         this.dateCreated = builder.dateCreated;
         this.dateLastModified = builder.dateLastModified;
+    }
+
+    private Note(final String title, final String body, final LocalDateTime dateCreated, final LocalDateTime dateLastModified) {
+        this.title = title;
+        this.body = body;
+        this.dateCreated = dateCreated;
+        this.dateLastModified = dateLastModified;
     }
 
     public static class NoteBuilder implements INoteBuilder {
@@ -39,7 +45,7 @@ public class Note implements INote {
 
         @Override
         public NoteBuilder withDateLastModified(LocalDateTime modified) {
-            this.dateLastModified=modified;
+            this.dateLastModified = modified;
             return this;
         }
 
