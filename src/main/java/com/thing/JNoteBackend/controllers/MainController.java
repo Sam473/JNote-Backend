@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import java.util.Set;
 
-@RestController
+@RestController("/api/v1/note")
 public class MainController {
 
     @NonNull
@@ -25,19 +25,13 @@ public class MainController {
         return ResponseEntity.of(Optional.of("Hello"));
     }
 
-    @PostMapping("/addnote")
+    @PostMapping()
     public ResponseEntity addNote(@RequestBody final Note note) {
         noteStorageService.saveNote(note);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/getnotedetails")
-    public ResponseEntity getNoteDetails() {
-        //get all the notes and return them
-        return ResponseEntity.of(Optional.of("NoteDetail"));
-    }
-
-    @GetMapping("/getnotes")
+    @GetMapping()
     public @ResponseBody Set<Note> getNotes() {
         //get all the notes and return them
         return noteStorageService.getNotes();

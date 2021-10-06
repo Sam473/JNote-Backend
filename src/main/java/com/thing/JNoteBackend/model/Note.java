@@ -3,9 +3,10 @@ package com.thing.JNoteBackend.model;
 import com.thing.JNoteBackend.model.interfaces.INote;
 import com.thing.JNoteBackend.model.interfaces.INoteBuilder;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Note implements INote {
+public class Note implements INote, Serializable {
     private final String title;
     private final String body;
     private final LocalDateTime dateCreated;
