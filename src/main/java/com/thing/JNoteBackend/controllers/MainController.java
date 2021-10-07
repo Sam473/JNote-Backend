@@ -3,6 +3,8 @@ package com.thing.JNoteBackend.controllers;
 import com.thing.JNoteBackend.model.Note;
 import com.thing.JNoteBackend.service.NoteStorageService;
 import io.micrometer.core.lang.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +37,8 @@ public class MainController {
     @GetMapping()
     public @ResponseBody ResponseEntity<Set<Note>> getNotes() {
         //get all the notes and return them
+        Logger logger =  LoggerFactory.getLogger(MainController.class);
+        logger.info("sending notes");
         return ResponseEntity.of(Optional.of(noteStorageService.getNotes()));
     }
 

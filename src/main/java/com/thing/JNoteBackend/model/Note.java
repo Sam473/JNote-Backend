@@ -19,34 +19,27 @@ public class Note implements INote, Serializable {
         this.dateLastModified = builder.dateLastModified;
     }
 
-    private Note(final String title, final String body, final LocalDateTime dateCreated, final LocalDateTime dateLastModified) {
+    private Note(final String title, final String body) {
         this.title = title;
         this.body = body;
-        this.dateCreated = dateCreated;
-        this.dateLastModified = dateLastModified;
+        this.dateCreated = LocalDateTime.now();
+        this.dateLastModified = LocalDateTime.now();
     }
 
     public static class NoteBuilder implements INoteBuilder {
         private String title;
         private String body;
-        private LocalDateTime dateCreated;
-        private LocalDateTime dateLastModified;
+        private final LocalDateTime dateCreated;
+        private final LocalDateTime dateLastModified;
+
+        public NoteBuilder() {
+            this.dateCreated = LocalDateTime.now();
+            this.dateLastModified = LocalDateTime.now();
+        }
 
         @Override
         public NoteBuilder withBody(String body) {
             this.body = body;
-            return this;
-        }
-
-        @Override
-        public NoteBuilder withDateCreated(LocalDateTime created) {
-            this.dateCreated = created;
-            return this;
-        }
-
-        @Override
-        public NoteBuilder withDateLastModified(LocalDateTime modified) {
-            this.dateLastModified = modified;
             return this;
         }
 
