@@ -6,7 +6,7 @@ import io.micrometer.core.lang.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Set;
+import java.util.List;
 
 @Component
 public class NoteStorageService {
@@ -22,7 +22,7 @@ public class NoteStorageService {
         return noteStore.saveNote(note);
     }
 
-    public Set<Note> getNotes() {
+    public List<Note> getNotes() {
         return noteStore.getNotes();
     }
 
