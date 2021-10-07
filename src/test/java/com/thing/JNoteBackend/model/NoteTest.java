@@ -19,5 +19,4 @@ public class NoteTest {
                 .build();
     }
 
-
 }

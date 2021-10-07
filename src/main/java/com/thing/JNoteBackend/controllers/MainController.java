@@ -1,6 +1,5 @@
 package com.thing.JNoteBackend.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.thing.JNoteBackend.model.Note;
 import com.thing.JNoteBackend.service.NoteStorageService;
 import io.micrometer.core.lang.NonNull;
@@ -34,7 +33,7 @@ public class MainController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Note>> getNotes() throws JsonProcessingException {
+    public ResponseEntity<List<Note>> getNotes() {
         //get all the notes and return them
         return ResponseEntity.of(Optional.of(noteStorageService.getNotes()));
     }

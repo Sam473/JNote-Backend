@@ -42,6 +42,7 @@ public class Note implements INote, Serializable {
         return dateLastModified;
     }
 
+
     public static class NoteBuilder implements INoteBuilder {
         private String title;
         private String body;
