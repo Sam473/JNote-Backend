@@ -1,6 +1,7 @@
 package com.thing.JNoteBackend.controllers;
 
 import com.thing.JNoteBackend.model.Note;
+import com.thing.JNoteBackend.model.Note.NoteBuilder;
 import com.thing.JNoteBackend.service.NoteStorageService;
 import io.micrometer.core.lang.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,8 @@ public class MainController {
     @GetMapping()
     public @ResponseBody ResponseEntity<List<Note>> getNotes() {
         //get all the notes and return them
-        return ResponseEntity.of(Optional.of(noteStorageService.getNotes()));
+        return ResponseEntity.of(Optional.of(List.of(new NoteBuilder().withTitle("").withBody("").build())));
+        //return ResponseEntity.of(Optional.of(noteStorageService.getNotes()));
     }
 
 }
