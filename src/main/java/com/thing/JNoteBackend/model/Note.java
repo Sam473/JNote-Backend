@@ -26,6 +26,22 @@ public class Note implements INote, Serializable {
         this.dateLastModified = LocalDateTime.now();
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public LocalDateTime getDateCreated() {
+        return dateCreated;
+    }
+
+    public LocalDateTime getDateLastModified() {
+        return dateLastModified;
+    }
+
     public static class NoteBuilder implements INoteBuilder {
         private String title;
         private String body;
