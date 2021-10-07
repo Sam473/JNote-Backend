@@ -22,7 +22,7 @@ public class MainController {
     }
 
     @GetMapping("/hello")
-    public ResponseEntity getHello() {
+    public ResponseEntity<String> getHello() {
         return ResponseEntity.of(Optional.of("Hello"));
     }
 
@@ -33,9 +33,9 @@ public class MainController {
     }
 
     @GetMapping()
-    public @ResponseBody Set<Note> getNotes() {
+    public @ResponseBody ResponseEntity<Set<Note>> getNotes() {
         //get all the notes and return them
-        return noteStorageService.getNotes();
+        return ResponseEntity.of(Optional.of(noteStorageService.getNotes()));
     }
 
 }
