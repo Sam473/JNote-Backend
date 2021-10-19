@@ -10,7 +10,7 @@ import static org.apache.commons.lang3.Validate.notNull;
 @Component
 public class NoteStore {
 
-    List<INote> notes;
+    final List<INote> notes;
 
     public NoteStore (final List<INote> notes) {
         this.notes = notNull(notes, "notes must not be null");

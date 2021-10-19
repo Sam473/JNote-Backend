@@ -19,11 +19,6 @@ public class MainController {
         this.noteStorageService = notNull(noteStorageService, "noteStorageService must not be null");
     }
 
-    @GetMapping("/hello")
-    public String getHello() {
-        return "Hello";
-    }
-
     @PostMapping()
     public INote addNote(@RequestBody final INote note) {
         notNull(note, "note must not be null");
