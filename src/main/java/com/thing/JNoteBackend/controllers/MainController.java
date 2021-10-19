@@ -1,41 +1,38 @@
 package com.thing.JNoteBackend.controllers;
 
-import com.thing.JNoteBackend.model.Note;
+import com.thing.JNoteBackend.model.interfaces.INote;
 import com.thing.JNoteBackend.service.NoteStorageService;
-import io.micrometer.core.lang.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
+import static org.apache.commons.lang3.Validate.notNull;
 
 @RestController
 @RequestMapping("/api/v1/note")
 public class MainController {
 
-    @NonNull
     NoteStorageService noteStorageService;
 
     public MainController(@Autowired final NoteStorageService noteStorageService) {
-        this.noteStorageService = noteStorageService;
+        this.noteStorageService = notNull(noteStorageService, "noteStorageService must not be null");
     }
 
     @GetMapping("/hello")
-    public ResponseEntity<String> getHello() {
-        return ResponseEntity.of(Optional.of("Hello"));
+    public String getHello() {
+        return "Hello";
     }
 
     @PostMapping()
-    public ResponseEntity addNote(@RequestBody final Note note) {
-        noteStorageService.saveNote(note);
-        return ResponseEntity.ok().build();
+    public INote addNote(@RequestBody final INote note) {
+        notNull(note, "note must not be null");
+        return noteStorageService.saveNote(note);
     }
 
     @GetMapping()
-    public ResponseEntity<List<Note>> getNotes() {
-        //get all the notes and return them
-        return ResponseEntity.of(Optional.of(noteStorageService.getNotes()));
+    public List<INote> getNotes() {
+        return noteStorageService.getNotes();
     }
 
 }

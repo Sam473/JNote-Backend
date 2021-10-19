@@ -6,13 +6,15 @@ import com.thing.JNoteBackend.model.interfaces.INoteBuilder;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import static org.apache.commons.lang3.Validate.notNull;
+
 public class Note implements INote, Serializable {
     private final String title;
     private final String body;
     private final LocalDateTime dateCreated;
     private final LocalDateTime dateLastModified;
 
-    private Note(NoteBuilder builder) {
+    private Note(final NoteBuilder builder) {
         this.title = builder.title;
         this.body = builder.body;
         this.dateCreated = builder.dateCreated;
@@ -42,7 +44,6 @@ public class Note implements INote, Serializable {
         return dateLastModified;
     }
 
-
     public static class NoteBuilder implements INoteBuilder {
         private String title;
         private String body;
@@ -55,23 +56,23 @@ public class Note implements INote, Serializable {
         }
 
         @Override
-        public NoteBuilder withBody(String body) {
+        public NoteBuilder withBody(final String body) {
+            notNull(body, "body must not be null");
             this.body = body;
             return this;
         }
 
         @Override
-        public NoteBuilder withTitle(String title) {
+        public NoteBuilder withTitle(final String title) {
+            notNull(title, "title must not be null");
             this.title = title;
             return this;
         }
 
         @Override
         public Note build() {
-            Note note = new Note(this);
+            final Note note = new Note(this);
             return note;
         }
-
     }
-
 }

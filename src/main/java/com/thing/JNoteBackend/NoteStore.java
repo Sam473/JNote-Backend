@@ -1,22 +1,28 @@
 package com.thing.JNoteBackend;
 
-import com.thing.JNoteBackend.model.Note;
+import com.thing.JNoteBackend.model.interfaces.INote;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static org.apache.commons.lang3.Validate.notNull;
 
 @Component
 public class NoteStore {
 
-    List<Note> notes = new ArrayList<>();
+    List<INote> notes;
 
-    public Note saveNote(final Note note) {
+    public NoteStore (final List<INote> notes) {
+        this.notes = notNull(notes, "notes must not be null");
+    }
+
+    public INote saveNote(final INote note) {
+        notNull(note, "note must not be null");
         notes.add(note);
         return note;
     }
 
-    public List<Note> getNotes() {
+    public List<INote> getNotes() {
         return notes;
     }
 }

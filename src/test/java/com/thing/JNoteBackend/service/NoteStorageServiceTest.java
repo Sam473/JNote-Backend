@@ -1,5 +1,6 @@
-package com.thing.JNoteBackend;
+package com.thing.JNoteBackend.service;
 
+import com.thing.JNoteBackend.NoteStore;
 import com.thing.JNoteBackend.model.interfaces.INote;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -12,36 +13,38 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;
+import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-class NoteStoreTest {
+class NoteStorageServiceTest {
 
-    NoteStore noteStore;
+    private NoteStorageService noteStorageService;
 
     @Mock
-    private List<INote> notes;
+    private NoteStore noteStore;
+
+    @BeforeEach
+    void beforeEach() {
+        noteStorageService = new NoteStorageService(noteStore);
+    }
 
     @Nested
     class ConstructorPreconditions {
         @Test
-        void notesMustNotBeNull() {
+        void noteStoreMustNotBeNull() {
         assertThatNullPointerException()
-            .isThrownBy(() -> new NoteStore(null))
-            .withMessage("notes must not be null");
+            .isThrownBy(() -> new NoteStorageService(null))
+            .withMessage("noteStore must not be null");
         }
-    }
-
-    @BeforeEach
-    void beforeEach() {
-        noteStore = new NoteStore(notes);
     }
 
     @Nested
     class Get {
 
         @Test
-        void getNotesWillReturnAllNotes() {
-            assertThat(noteStore.getNotes()).isEqualTo(notes);
+        void getNotesWillReturnAllNotes(@Mock final List<INote> notes) {
+            given(noteStore.getNotes()).willReturn(notes);
+            assertThat(noteStorageService.getNotes()).isEqualTo(notes);
         }
 
     }
@@ -53,14 +56,16 @@ class NoteStoreTest {
             @Test
             void noteMustNotBeNull() {
                 assertThatNullPointerException()
-                        .isThrownBy(() -> noteStore.saveNote(null))
+                        .isThrownBy(() -> noteStorageService.saveNote(null))
                         .withMessage("note must not be null");
             }
         }
 
         @Test
-        void saveNoteWillSave(@Mock final INote note) {
-            assertThat(noteStore.saveNote(note)).isEqualTo(note);
+        void saveNoteWillAddToNotes(@Mock final INote note) {
+            given(noteStore.saveNote(note)).willReturn(note);
+            assertThat(noteStorageService.saveNote(note)).isEqualTo(note);
         }
     }
+
 }
