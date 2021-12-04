@@ -1,4 +1,4 @@
-package com.jnote.backend.service.controller;
+package com.jnote.backend.controller;
 
 import com.jnote.backend.model.interfaces.INote;
 import com.jnote.backend.service.NoteStorageService;
