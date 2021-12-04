@@ -11,10 +11,10 @@ public class NoteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private final String title;
-    private final String body;
-    private final LocalDateTime dateCreated;
-    private final LocalDateTime dateLastModified;
+    private String title;
+    private String body;
+    private LocalDateTime dateCreated;
+    private LocalDateTime dateLastModified;
 
     public NoteEntity(final String title, final String body,final LocalDateTime dateCreated, final LocalDateTime dateLastModified) {
         this.title = title;
@@ -22,6 +22,9 @@ public class NoteEntity {
         this.dateCreated = dateCreated;
         this.dateLastModified = dateLastModified;
     }
+
+    //TODO: Does this need to be protected?
+    protected NoteEntity() {}
 
     public Long getId() {
         return id;
