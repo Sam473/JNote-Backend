@@ -19,7 +19,7 @@
 		<java.version>11</java.version>
 		<h2.version>1.4.200</h2.version>
 		<flyway-core.version>8.2.0</flyway-core.version>
-		<mssql-jdbc.version>9.4.0.jre11</mssql-jdbc.version>
+		<mssql-jdbc.version>9.2.0.jre11</mssql-jdbc.version>
 	</properties>
 
 	<dependencies>
