@@ -1,5 +1,6 @@
 package com.jnote.backend.controller;
 
+import com.jnote.backend.model.Note;
 import com.jnote.backend.model.interfaces.INote;
 import com.jnote.backend.service.NoteStorageService;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,7 +61,7 @@ class MainControllerTest {
         }
 
         @Test
-        void addNoteWillAddToNotes(@Mock final INote note) {
+        void addNoteWillAddToNotes(@Mock final Note note) {
             given(noteStorageService.saveNote(note)).willReturn(note);
             assertThat(mainController.addNote(note)).isEqualTo(note);
         }

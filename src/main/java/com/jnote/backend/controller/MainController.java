@@ -1,5 +1,6 @@
 package com.jnote.backend.controller;
 
+import com.jnote.backend.model.Note;
 import com.jnote.backend.model.interfaces.INote;
 import com.jnote.backend.service.NoteStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class MainController {
     }
 
     @PostMapping()
-    public INote addNote(@RequestBody final INote note) {
+    public INote addNote(@RequestBody final Note note) {
         notNull(note, "note must not be null");
         return noteStorageService.saveNote(note);
     }
