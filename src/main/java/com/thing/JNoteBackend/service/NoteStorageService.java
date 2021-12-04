@@ -1,7 +1,7 @@
 package com.thing.JNoteBackend.service;
 
-import com.thing.JNoteBackend.NoteStore;
 import com.thing.JNoteBackend.model.interfaces.INote;
+import com.thing.JNoteBackend.notestore.NoteStore;
 import io.micrometer.core.lang.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

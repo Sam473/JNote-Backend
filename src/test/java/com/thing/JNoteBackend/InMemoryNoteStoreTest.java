@@ -1,6 +1,7 @@
 package com.thing.JNoteBackend;
 
 import com.thing.JNoteBackend.model.interfaces.INote;
+import com.thing.JNoteBackend.notestore.InMemoryNoteStore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -14,9 +15,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 
 @ExtendWith(MockitoExtension.class)
-class NoteStoreTest {
+class InMemoryNoteStoreTest {
 
-    NoteStore noteStore;
+    InMemoryNoteStore inMemoryNoteStore;
 
     @Mock
     private List<INote> notes;
@@ -26,14 +27,14 @@ class NoteStoreTest {
         @Test
         void notesMustNotBeNull() {
         assertThatNullPointerException()
-            .isThrownBy(() -> new NoteStore(null))
+            .isThrownBy(() -> new InMemoryNoteStore(null))
             .withMessage("notes must not be null");
         }
     }
 
     @BeforeEach
     void beforeEach() {
-        noteStore = new NoteStore(notes);
+        inMemoryNoteStore = new InMemoryNoteStore(notes);
     }
 
     @Nested
@@ -41,7 +42,7 @@ class NoteStoreTest {
 
         @Test
         void getNotesWillReturnAllNotes() {
-            assertThat(noteStore.getNotes()).isEqualTo(notes);
+            assertThat(inMemoryNoteStore.getNotes()).isEqualTo(notes);
         }
 
     }
@@ -53,14 +54,14 @@ class NoteStoreTest {
             @Test
             void noteMustNotBeNull() {
                 assertThatNullPointerException()
-                        .isThrownBy(() -> noteStore.saveNote(null))
+                        .isThrownBy(() -> inMemoryNoteStore.saveNote(null))
                         .withMessage("note must not be null");
             }
         }
 
         @Test
         void saveNoteWillSave(@Mock final INote note) {
-            assertThat(noteStore.saveNote(note)).isEqualTo(note);
+            assertThat(inMemoryNoteStore.saveNote(note)).isEqualTo(note);
         }
     }
 }

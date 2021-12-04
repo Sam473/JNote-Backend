@@ -1,7 +1,7 @@
 package com.thing.JNoteBackend.service;
 
-import com.thing.JNoteBackend.NoteStore;
 import com.thing.JNoteBackend.model.interfaces.INote;
+import com.thing.JNoteBackend.notestore.InMemoryNoteStore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -21,11 +21,11 @@ class NoteStorageServiceTest {
     private NoteStorageService noteStorageService;
 
     @Mock
-    private NoteStore noteStore;
+    private InMemoryNoteStore inMemoryNoteStore;
 
     @BeforeEach
     void beforeEach() {
-        noteStorageService = new NoteStorageService(noteStore);
+        noteStorageService = new NoteStorageService(inMemoryNoteStore);
     }
 
     @Nested
@@ -43,7 +43,7 @@ class NoteStorageServiceTest {
 
         @Test
         void getNotesWillReturnAllNotes(@Mock final List<INote> notes) {
-            given(noteStore.getNotes()).willReturn(notes);
+            given(inMemoryNoteStore.getNotes()).willReturn(notes);
             assertThat(noteStorageService.getNotes()).isEqualTo(notes);
         }
 
@@ -63,7 +63,7 @@ class NoteStorageServiceTest {
 
         @Test
         void saveNoteWillAddToNotes(@Mock final INote note) {
-            given(noteStore.saveNote(note)).willReturn(note);
+            given(inMemoryNoteStore.saveNote(note)).willReturn(note);
             assertThat(noteStorageService.saveNote(note)).isEqualTo(note);
         }
     }

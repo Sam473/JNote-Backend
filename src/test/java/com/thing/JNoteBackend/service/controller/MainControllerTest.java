@@ -1,4 +1,4 @@
-package com.thing.JNoteBackend.controllers;
+package com.thing.JNoteBackend.service.controller;
 
 import com.thing.JNoteBackend.model.interfaces.INote;
 import com.thing.JNoteBackend.service.NoteStorageService;

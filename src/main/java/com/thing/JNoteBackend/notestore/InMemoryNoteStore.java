@@ -1,6 +1,7 @@
-package com.thing.JNoteBackend;
+package com.thing.JNoteBackend.notestore;
 
 import com.thing.JNoteBackend.model.interfaces.INote;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -8,11 +9,12 @@ import java.util.List;
 import static org.apache.commons.lang3.Validate.notNull;
 
 @Component
-public class NoteStore {
+@Profile("inmemory")
+public class InMemoryNoteStore implements NoteStore{
 
     final List<INote> notes;
 
-    public NoteStore (final List<INote> notes) {
+    public InMemoryNoteStore(final List<INote> notes) {
         this.notes = notNull(notes, "notes must not be null");
     }
 

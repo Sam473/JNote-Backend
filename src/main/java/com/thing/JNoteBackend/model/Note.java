@@ -44,11 +44,15 @@ public class Note implements INote, Serializable {
         return dateLastModified;
     }
 
+    public static NoteBuilder builder(){
+        return new NoteBuilder();
+    }
+
     public static class NoteBuilder implements INoteBuilder {
         private String title;
         private String body;
-        private final LocalDateTime dateCreated;
-        private final LocalDateTime dateLastModified;
+        private LocalDateTime dateCreated;
+        private LocalDateTime dateLastModified;
 
         public NoteBuilder() {
             this.dateCreated = LocalDateTime.now();
@@ -70,9 +74,22 @@ public class Note implements INote, Serializable {
         }
 
         @Override
+        public NoteBuilder withDateCreated(final LocalDateTime dateCreated) {
+            notNull(dateCreated, "dateCreated must not be null");
+            this.dateCreated = dateCreated;
+            return this;
+        }
+
+        @Override
+        public NoteBuilder withDateLastModified(final LocalDateTime dateLastModified) {
+            notNull(dateLastModified, "dateLastModified must not be null");
+            this.dateLastModified = dateLastModified;
+            return this;
+        }
+
+        @Override
         public Note build() {
-            final Note note = new Note(this);
-            return note;
+            return new Note(this);
         }
     }
 }
