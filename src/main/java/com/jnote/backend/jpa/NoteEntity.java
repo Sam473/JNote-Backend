@@ -1,6 +1,8 @@
 package com.jnote.backend.jpa;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
@@ -8,7 +10,6 @@ import java.time.LocalDateTime;
 public class NoteEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private final String title;
