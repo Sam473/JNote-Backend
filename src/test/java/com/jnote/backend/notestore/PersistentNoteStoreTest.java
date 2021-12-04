@@ -1,10 +1,9 @@
-package com.jnote.backend;
+package com.jnote.backend.notestore;
 
 import com.jnote.backend.jpa.NoteEntity;
 import com.jnote.backend.model.Note;
 import com.jnote.backend.model.interfaces.INote;
 import com.jnote.backend.model.tranformer.OneToOneTransformer;
-import com.jnote.backend.notestore.PersistentNoteStore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
