@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class NoteEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private final String title;
