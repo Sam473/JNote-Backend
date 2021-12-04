@@ -11,10 +11,10 @@ import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 
 class NoteLDMtoEntityTest {
 
-    public static final LocalDateTime DATE_LAST_MODIFIED = LocalDateTime.of(2021, 2, 2, 2, 2, 3);
-    public static final LocalDateTime DATE_CREATED = LocalDateTime.of(2020, 2, 2, 2, 2, 2);
-    public static final String TITLE = "title";
-    public static final String BODY = "body";
+    private static final LocalDateTime DATE_LAST_MODIFIED = LocalDateTime.of(2021, 2, 2, 2, 2, 3);
+    private static final LocalDateTime DATE_CREATED = LocalDateTime.of(2020, 2, 2, 2, 2, 2);
+    private static final String TITLE = "title";
+    private static final String BODY = "body";
 
     @Test
     void ldmMustNotBeNull() {
