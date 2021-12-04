@@ -19,6 +19,7 @@
 		<java.version>11</java.version>
 		<h2.version>1.4.200</h2.version>
 		<flyway-core.version>8.2.0</flyway-core.version>
+		<mssql-jdbc.version>9.4.0.jre11</mssql-jdbc.version>
 	</properties>
 
 	<dependencies>
@@ -42,10 +43,16 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>${mssql-jdbc.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>${h2.version}</version>
-<!--			<scope>test</scope>-->
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

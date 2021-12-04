@@ -23,7 +23,7 @@ public class NoteEntity {
         this.dateLastModified = dateLastModified;
     }
 
-    //TODO: Does this need to be protected?
+    //TODO: Does this need to be protected, can be private?
     protected NoteEntity() {}
 
     public Long getId() {
