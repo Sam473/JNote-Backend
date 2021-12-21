@@ -10,6 +10,7 @@ import static org.apache.commons.lang3.Validate.notNull;
 
 @Component
 @Profile("inmemory")
+@Deprecated()
 public class InMemoryNoteStore implements NoteStore{
 
     final List<INote> notes;

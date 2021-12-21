@@ -9,5 +9,4 @@ public class JNoteBackendApplication {
 	public static void main(final String[] args) {
 		SpringApplication.run(JNoteBackendApplication.class, args);
 	}
-
 }
