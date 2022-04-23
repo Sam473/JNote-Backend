@@ -1,6 +1,5 @@
 package com.jnote.backend.notestore;
 
-import com.functionaltools.functionalutils.Identity;
 import com.google.common.collect.ImmutableList;
 import com.jnote.backend.jpa.NoteEntity;
 import com.jnote.backend.model.interfaces.INote;
@@ -8,6 +7,7 @@ import com.jnote.backend.model.tranformer.OneToOneTransformer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
+import static com.functionaltools.functionalutils.Using.using;
 import static org.apache.commons.lang3.Validate.notNull;
 
 @Component
@@ -27,7 +27,7 @@ public class PersistentNoteStore implements NoteStore{
 
     public INote saveNote(final INote note) {
         notNull(note, "note must not be null");
-        return Identity.of(note)
+        return using(note)
                 .map(noteLDMToEntity::transform)
                 .map(repository::save)
                 .in(noteEntityToLDM::transform);
