@@ -2,7 +2,6 @@ package com.jnote.backend.service;
 
 import com.jnote.backend.model.interfaces.INote;
 import com.jnote.backend.notestore.NoteStore;
-import io.micrometer.core.lang.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,8 +12,7 @@ import static org.apache.commons.lang3.Validate.notNull;
 @Component
 public class NoteStorageService {
 
-    @NonNull
-    NoteStore noteStore;
+    final NoteStore noteStore;
 
     public NoteStorageService(@Autowired final NoteStore noteStore) {
         this.noteStore = notNull(noteStore, "noteStore must not be null");

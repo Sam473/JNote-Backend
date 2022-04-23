@@ -1,14 +1,12 @@
 package com.jnote.backend.notestore;
 
 import com.functionaltools.functionalutils.Identity;
+import com.google.common.collect.ImmutableList;
 import com.jnote.backend.jpa.NoteEntity;
 import com.jnote.backend.model.interfaces.INote;
 import com.jnote.backend.model.tranformer.OneToOneTransformer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.apache.commons.lang3.Validate.notNull;
 
@@ -29,7 +27,6 @@ public class PersistentNoteStore implements NoteStore{
 
     public INote saveNote(final INote note) {
         notNull(note, "note must not be null");
-
         return Identity.of(note)
                 .map(noteLDMToEntity::transform)
                 .map(repository::save)
@@ -37,9 +34,9 @@ public class PersistentNoteStore implements NoteStore{
                 .get();
     }
 
-    public List<INote> getNotes() {
+    public ImmutableList<INote> getNotes() {
         return repository.findAll().stream()
                 .map(noteEntityToLDM::transform)
-                .collect(Collectors.toList());
+                .collect(ImmutableList.toImmutableList());
     }
 }

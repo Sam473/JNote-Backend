@@ -1,5 +1,6 @@
 package com.jnote.backend.notestore;
 
+import com.google.common.collect.ImmutableList;
 import com.jnote.backend.model.interfaces.INote;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,7 @@ public class InMemoryNoteStore implements NoteStore{
         return note;
     }
 
-    public List<INote> getNotes() {
-        return notes;
+    public ImmutableList<INote> getNotes() {
+        return ImmutableList.copyOf(notes);
     }
 }

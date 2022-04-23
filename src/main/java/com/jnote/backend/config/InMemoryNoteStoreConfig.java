@@ -14,7 +14,7 @@ public class InMemoryNoteStoreConfig {
 
     @Bean
     public List<INote> notes() {
-        return new ArrayList<INote>();
+        return new ArrayList<>();
     }
 
 }
