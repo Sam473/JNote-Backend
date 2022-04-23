@@ -1,6 +1,5 @@
 package com.jnote.backend.notestore;
 
-import com.google.common.collect.ImmutableList;
 import com.jnote.backend.model.interfaces.INote;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -8,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;
@@ -17,8 +19,7 @@ class InMemoryNoteStoreTest {
 
     InMemoryNoteStore inMemoryNoteStore;
 
-    @Mock
-    private ImmutableList<INote> notes;
+    private final List<INote> notes = new ArrayList<>();
 
     @Nested
     class ConstructorPreconditions {
@@ -40,7 +41,7 @@ class InMemoryNoteStoreTest {
 
         @Test
         void getNotesWillReturnAllNotes() {
-            assertThat(inMemoryNoteStore.getNotes()).isEqualTo(notes);
+            assertThat(inMemoryNoteStore.getNotes()).usingRecursiveComparison().isEqualTo(notes);
         }
 
     }
