@@ -30,8 +30,7 @@ public class PersistentNoteStore implements NoteStore{
         return Identity.of(note)
                 .map(noteLDMToEntity::transform)
                 .map(repository::save)
-                .map(noteEntityToLDM::transform)
-                .get();
+                .in(noteEntityToLDM::transform);
     }
 
     public ImmutableList<INote> getNotes() {
