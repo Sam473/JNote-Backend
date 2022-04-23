@@ -10,6 +10,7 @@ import java.util.List;
 import static org.apache.commons.lang3.Validate.notNull;
 
 @Component
+//TODO: Could make this StorageService<INote> if I end up with multiple StorageServices
 public class NoteStorageService {
 
     final NoteStore noteStore;
