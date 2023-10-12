@@ -21,6 +21,7 @@
 		<flyway-core.version>8.2.0</flyway-core.version>
 		<mssql-jdbc.version>9.2.0.jre11</mssql-jdbc.version>
 		<commons-lang3.version>3.2.1</commons-lang3.version>
+		<functionalutils.version>0.0.1</functionalutils.version>
 	</properties>
 
 	<dependencies>
@@ -64,9 +65,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.functionaltools</groupId>
+			<groupId>io.github.samuelstacey</groupId>
 			<artifactId>functionalutils</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${functionalutils.version}</version>
 		</dependency>
 
 		<dependency>
